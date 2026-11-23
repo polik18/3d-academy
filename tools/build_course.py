@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_SRC = Path.home() / "Desktop" / "小黃老師3d列印教學檔案"
 SITE = "https://polik18.github.io/3d-academy/"
 CHANNEL = "https://www.youtube.com/@polikjames"
-ASSET_V = "20261123"
+ASSET_V = "20261123b"
 FORBIDDEN = ["studio.youtube.com", "US$", "row_text", "matched_queries", "search_query"]
 CORE = ["M0", "M1", "M2", "M3", "M5", "M7", "M9"]
 
@@ -246,6 +246,41 @@ def svg_exhibit() -> str:
             '<text class="s-sub" x="40" y="40">Sketchfab</text><text class="s-sub" x="262" y="40">Spatial</text></svg>')
 
 
+def svg_printer() -> str:
+    """首頁動畫：噴頭來回擠出，花瓶一層層長高（純 SVG＋CSS，可循環）。"""
+    import math
+    n, h, base_y, cx = 16, 11, 262, 200
+    cycle = 14  # 秒
+    layers, keys, nozzle = [], [], []
+    for i in range(n):
+        w = 70 + 34 * math.sin(i / (n - 1) * math.pi * 1.15) - (i > n - 3) * 14
+        x, y = cx - w / 2, base_y - (i + 1) * h
+        s = i / n * 84
+        keys.append(f"@keyframes pl{i}{{0%,{s:.1f}%{{transform:scaleX(0)}}{s + 84 / n:.1f}%,95%{{transform:scaleX(1);opacity:1}}100%{{transform:scaleX(1);opacity:0}}}}")
+        layers.append(f'<rect class="pr-layer" x="{x:.1f}" y="{y}" width="{w:.1f}" height="{h - 2}" rx="3" style="animation:pl{i} {cycle}s linear infinite"/>')
+        nozzle.append(f"{s:.1f}%{{transform:translateY({-(i) * h}px)}}")
+    nozzle.append(f"84%,100%{{transform:translateY({-(n - 1) * h - 40}px)}}")
+    css = ("<style>" + "".join(keys) +
+           "@keyframes nz{" + "".join(nozzle) + "}"
+           "@keyframes sweep{0%{transform:translateX(-46px)}100%{transform:translateX(46px)}}"
+           ".pr-layer{transform-box:fill-box;transform-origin:left}"
+           f".pr-z{{animation:nz {cycle}s steps(1,end) infinite}}.pr-x{{animation:sweep .7s ease-in-out infinite alternate}}"
+           "@media (prefers-reduced-motion:reduce){.pr-layer,.pr-z,.pr-x{animation:none!important}}</style>")
+    grid = "".join(f'<path class="pr-grid" d="M{60 + i * 28} 270 l-22 22"/>' for i in range(11))
+    return (f'<svg class="printer" viewBox="0 0 400 330" role="img" aria-label="3D 列印機正在一層一層列印花瓶">{css}'
+            '<defs><linearGradient id="prg" x1="0" x2="1"><stop offset="0" stop-color="var(--acc)"/><stop offset="1" stop-color="#f59e0b"/></linearGradient></defs>'
+            '<rect class="pr-frame" x="34" y="22" width="332" height="290" rx="18"/>'
+            '<path class="pr-rail" d="M58 44 H342"/>'
+            f'<path class="pr-bed" d="M70 270 H330 L308 292 H48 Z"/>{grid}'
+            '<g class="pr-obj">' + "".join(layers) + '</g>'
+            '<g class="pr-z"><g class="pr-x">'
+            f'<path class="pr-fil" d="M200 44 C 200 90, 230 120, 200 {base_y - h - 44}"/>'
+            f'<rect class="pr-head" x="172" y="{base_y - h - 44}" width="56" height="34" rx="8"/>'
+            f'<path class="pr-tip" d="M192 {base_y - h - 10} h16 l-6 10 h-4 z"/>'
+            f'<circle class="pr-led" cx="216" cy="{base_y - h - 27}" r="3.5"/></g></g>'
+            '</svg>')
+
+
 DIAGRAMS = {"M0": ("檔案從哪裡來、要往哪裡去", svg_workflow), "M1": ("先熟悉座標與三個變形鍵", svg_axes),
             "M2": ("所有模型都由頂點、邊、面組成", svg_mesh), "M5": ("切片軟體把模型切成一層層", svg_slice),
             "M7": ("把作品搬進線上展場", svg_exhibit), "M3": ("專題就是把工作流程完整走一次", svg_workflow),
@@ -279,15 +314,18 @@ def head(title: str, desc: str, path: str, base: str, extra: str = "", og_img: s
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap">
 <link rel="stylesheet" href="{base}/assets/style.css?v={ASSET_V}">
+<script>try{{var t=localStorage.getItem("pk3d.theme");if(t)document.documentElement.setAttribute("data-theme",t)}}catch(e){{}}document.documentElement.classList.add("js")</script>
 {extra}
 </head>
 <body>
 <a class="skip" href="#main">跳到主要內容</a>
 <header class="top">
-  <a class="brand" href="{base}/"><span class="brand-mark" aria-hidden="true">3D</span><span>小黃老師 3D 自學館</span></a>
+  <a class="brand" href="{base}/"><span class="brand-mark" aria-hidden="true">3D</span><span class="brand-t">小黃老師 3D 自學館</span></a>
   <nav class="top-nav" aria-label="主選單">
-    <a href="{base}/#map">課程地圖</a>
-    <a href="{base}/me.html">我的學習紀錄 <span class="pill" data-overall>0%</span></a>
+    <button type="button" class="search-btn" data-search-open aria-label="搜尋影片"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>搜尋影片</span><kbd>/</kbd></button>
+    <a href="{base}/#map" class="nav-map">課程地圖</a>
+    <a href="{base}/me.html" class="nav-me"><span class="nav-me-t">我的紀錄</span> <span class="pill" data-overall>0%</span></a>
+    <button type="button" class="icon-btn" data-theme-toggle aria-label="切換深淺色"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" class="fill"/></svg></button>
   </nav>
 </header>
 <main id="main">
@@ -300,6 +338,16 @@ def foot(base: str, page: str) -> str:
   <p>影片皆來自 YouTube 頻道 <a href="{CHANNEL}" rel="noopener" target="_blank">小黃老師 @polikjames</a>。學習紀錄只存在你自己的瀏覽器，不會上傳。</p>
   <p><a href="{base}/me.html">匯出／備份學習紀錄</a> · <a href="https://polik18.github.io/education.html">Polik 教學現場</a></p>
 </footer>
+<dialog class="search" data-search aria-label="搜尋影片">
+  <div class="search-box">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input type="search" data-search-input placeholder="輸入關鍵字，例如：Cura、倒角、指尖陀螺、STL" autocomplete="off" aria-label="搜尋關鍵字">
+    <kbd>Esc</kbd>
+  </div>
+  <ul class="search-res" data-search-res role="listbox" aria-label="搜尋結果"></ul>
+  <p class="search-hint">↑↓ 選擇 · Enter 開啟 · 共 166 部影片</p>
+</dialog>
+<div class="toasts" data-toasts aria-live="polite"></div>
 <script src="{base}/assets/progress.js?v={ASSET_V}"></script>
 <script src="{base}/assets/app.js?v={ASSET_V}" data-page="{page}"></script>
 <script src="https://polik18.github.io/assets/site-stats.js" defer></script>
@@ -311,15 +359,17 @@ def foot(base: str, page: str) -> str:
 
 def video_card(v: dict, base: str) -> str:
     lesson = f'<span class="tag">第 {v["lesson"]} 課</span>' if v["lesson"] else ""
-    return (f'<li><a class="vcard" href="{base}/v/{v["id"]}.html" data-vid="{v["id"]}">'
+    return (f'<li data-lv="{v["lv"]}"><a class="vcard" href="{base}/v/{v["id"]}.html" data-vid="{v["id"]}">'
             f'<span class="thumb"><img src="https://i.ytimg.com/vi/{v["id"]}/mqdefault.jpg" alt="" loading="lazy" width="320" height="180">'
-            f'<span class="dur">{fmt_time(v["dur"])}</span><span class="st" data-status></span></span>'
+            f'<span class="dur">{fmt_time(v["dur"])}</span><span class="st" data-status></span><span class="hover-play" aria-hidden="true"></span></span>'
             f'<span class="vbody"><span class="vtitle">{esc(v["title"])}</span>'
             f'<span class="vmeta">{stars(v["lv"])}{lesson}</span></span></a></li>')
 
 
-def module_card(m: dict, base: str) -> str:
+def module_card(m: dict, base: str, step=None) -> str:
     return (f'<a class="mcard{" core" if m["core"] else " elective"}" href="{base}/m/{m["id"]}.html" data-module="{m["id"]}">'
+            f'<span class="ring" data-ring aria-hidden="true"><b data-ringpct>0%</b></span>'
+            + (f'<span class="step">STEP {step}</span>' if step else '<span class="step">選修</span>') +
             f'<span class="mid">{m["id"]}</span><span class="mtitle">{esc(m["title"].split("：")[0])}</span>'
             f'<span class="msub">{esc(m["title"].split("：")[1] if "：" in m["title"] else "")}</span>'
             f'<span class="mmeta">{stars(m["lv"])}<span>{esc(m["weeks"])}</span><span>{m["count"]} 部影片</span></span>'
@@ -330,7 +380,7 @@ def page_index(data: dict) -> str:
     mods = data["modules"]
     by = {m["id"]: m for m in mods}
     total = len(data["videos"])
-    core = "".join(module_card(by[i], ".") for i in CORE)
+    core = "".join(module_card(by[i], ".", k + 1) for k, i in enumerate(CORE))
     elec = "".join(module_card(m, ".") for m in mods if not m["core"])
     desc = f"小黃老師 YouTube 頻道 {total} 部 Blender 建模與 3D 列印教學影片，整理成由淺入深的自學課程；學習進度與筆記存在自己的電腦。"
     ld = {"@context": "https://schema.org", "@type": "Course", "name": "小黃老師 3D 自學館：Blender 建模到 3D 列印",
@@ -353,7 +403,12 @@ def page_index(data: dict) -> str:
       <li><b>{sum(len(m["units"]) for m in mods)}</b>小單元</li><li><b>{esc(data["weeks"].split("（")[0])}</b>建議時程</li>
     </ul>
   </div>
-  <div class="hero-card" data-resume hidden></div>
+  <div class="hero-vis">
+    <div class="hero-glow" aria-hidden="true"></div>
+    {svg_printer()}
+    <span class="chip c1" aria-hidden="true">PLA · 0.2 mm</span><span class="chip c2" aria-hidden="true">Layer 16/16</span><span class="chip c3" aria-hidden="true">Blender → STL</span>
+    <div class="hero-card" data-resume hidden></div>
+  </div>
 </section>
 
 <section class="band">
@@ -437,7 +492,14 @@ def page_module(m: dict, data: dict, prev_m, next_m) -> str:
   </aside>
 </section>
 {diag}
-<nav class="toc" aria-label="小單元">{toc}</nav>
+<div class="toolbar" data-filters>
+  <nav class="toc" aria-label="小單元">{toc}</nav>
+  <div class="filters" role="group" aria-label="篩選影片">
+    <span class="seg" data-filter="status"><button type="button" data-v="all" aria-pressed="true">全部</button><button type="button" data-v="todo" aria-pressed="false">未完成</button><button type="button" data-v="done" aria-pressed="false">已完成</button></span>
+    <span class="seg" data-filter="lv"><button type="button" data-v="all" aria-pressed="true">所有難度</button><button type="button" data-v="1-2" aria-pressed="false">入門</button><button type="button" data-v="3" aria-pressed="false">中階</button><button type="button" data-v="4-5" aria-pressed="false">進階</button></span>
+    <span class="fcount" data-fcount aria-live="polite"></span>
+  </div>
+</div>
 {"".join(units_html)}
 {nav}
 ''' + foot(base, "module")
@@ -477,7 +539,7 @@ def page_video(v: dict, data: dict, unit: dict, mod: dict) -> str:
     return head(f'{v["title"]}｜小黃老師 3D 自學館', desc, f'v/{v["id"]}.html', base, extra,
                 f"https://i.ytimg.com/vi/{v['id']}/hqdefault.jpg") + f'''
 <nav class="crumb" aria-label="路徑"><a href="../">課程地圖</a><span>›</span><a href="../m/{mod["id"]}.html">{mod["id"]} {esc(mod["title"].split("：")[0])}</a><span>›</span><a href="../m/{mod["id"]}.html#{unit["id"]}">{unit["id"]} {esc(unit["title"])}</a></nav>
-<article class="watch" data-video="{v["id"]}" data-dur="{v["dur"]}" data-unit="{unit["id"]}">
+<article class="watch" data-video="{v["id"]}" data-dur="{v["dur"]}" data-unit="{unit["id"]}" data-next="{next_v["id"] if next_v else ""}" data-next-title="{esc(next_v["title"]) if next_v else ""}" data-back="../m/{mod["id"]}.html#{unit["id"]}">
   <div class="watch-main">
     <div class="player" data-player>
       <button type="button" class="facade" data-facade aria-label="播放影片：{esc(v["title"])}">
@@ -492,6 +554,7 @@ def page_video(v: dict, data: dict, unit: dict, mod: dict) -> str:
       <a class="yt" href="https://www.youtube.com/watch?v={v["id"]}" target="_blank" rel="noopener">在 YouTube 開啟 ↗</a>
     </div>
     <p class="nudge" data-nudge hidden>快看完了！做完練習後記得按「已完成」。</p>
+    <div class="nextup" data-nextup hidden></div>
     <section class="panel"><h2>影片重點</h2>{summary}{review}{links}
       <p class="muted small">先修：{esc(v["prereq"] or "無")}</p></section>
     {chapters}
@@ -503,7 +566,7 @@ def page_video(v: dict, data: dict, unit: dict, mod: dict) -> str:
       <div class="row"><button type="button" class="btn sm" data-stamp>插入目前時間</button><span class="saved" data-saved aria-live="polite"></span></div>
     </section>
     <section class="panel">
-      <h2>練習檢核</h2>
+      <h2>練習檢核 <span class="stepmeter" data-stepmeter aria-hidden="true"><i></i><i></i><i></i></span></h2>
       <ul class="todo">
         <li><label><input type="checkbox" data-step="0"> 讀完重點，知道要做出什麼</label></li>
         <li><label><input type="checkbox" data-step="1"> 跟著影片做一次</label></li>
@@ -535,6 +598,7 @@ def page_me(data: dict) -> str:
 <p class="warn" data-nostore hidden>這個瀏覽器目前無法儲存資料（可能是無痕模式或封鎖網站資料）。你仍可以學習，但關掉頁面後紀錄會消失。</p>
 <p class="toast" data-msg role="status" aria-live="polite" hidden></p>
 <section class="kpis" data-kpis></section>
+<section class="band"><h2>成就徽章 <span class="muted small" data-badgecount></span></h2><div class="badges" data-badges></div></section>
 <section class="band"><h2>近 12 週學習日曆</h2><div class="heat" data-heat></div><p class="muted small">顏色越深代表當天看影片的時間越長（只計算在本站播放器播放的時間）。</p></section>
 <section class="band"><h2>各單元進度</h2><div class="mlist" data-mlist></div></section>
 <section class="band"><h2>我的筆記與作品紀錄</h2><div data-notes><p class="muted">還沒有筆記。</p></div></section>

@@ -15,16 +15,19 @@
 <link rel="icon" href="https://polik18.github.io/assets/brand/favicon.svg?v=20261123" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap">
-<link rel="stylesheet" href="../assets/style.css?v=20261123">
+<link rel="stylesheet" href="../assets/style.css?v=20261123b">
+<script>try{var t=localStorage.getItem("pk3d.theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}document.documentElement.classList.add("js")</script>
 
 </head>
 <body>
 <a class="skip" href="#main">跳到主要內容</a>
 <header class="top">
-  <a class="brand" href="../"><span class="brand-mark" aria-hidden="true">3D</span><span>小黃老師 3D 自學館</span></a>
+  <a class="brand" href="../"><span class="brand-mark" aria-hidden="true">3D</span><span class="brand-t">小黃老師 3D 自學館</span></a>
   <nav class="top-nav" aria-label="主選單">
-    <a href="../#map">課程地圖</a>
-    <a href="../me.html">我的學習紀錄 <span class="pill" data-overall>0%</span></a>
+    <button type="button" class="search-btn" data-search-open aria-label="搜尋影片"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>搜尋影片</span><kbd>/</kbd></button>
+    <a href="../#map" class="nav-map">課程地圖</a>
+    <a href="../me.html" class="nav-me"><span class="nav-me-t">我的紀錄</span> <span class="pill" data-overall>0%</span></a>
+    <button type="button" class="icon-btn" data-theme-toggle aria-label="切換深淺色"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" class="fill"/></svg></button>
   </nav>
 </header>
 <main id="main">
@@ -44,12 +47,19 @@
   </aside>
 </section>
 
-<nav class="toc" aria-label="小單元"><a href="#M6.1">M6.1 材質、貼圖與 Texture Paint</a><a href="#M6.2">M6.2 燈光與算繪</a><a href="#M6.3">M6.3 布料、波紋與物理模擬</a><a href="#M6.4">M6.4 毛髮、動態捕捉與動畫</a></nav>
+<div class="toolbar" data-filters>
+  <nav class="toc" aria-label="小單元"><a href="#M6.1">M6.1 材質、貼圖與 Texture Paint</a><a href="#M6.2">M6.2 燈光與算繪</a><a href="#M6.3">M6.3 布料、波紋與物理模擬</a><a href="#M6.4">M6.4 毛髮、動態捕捉與動畫</a></nav>
+  <div class="filters" role="group" aria-label="篩選影片">
+    <span class="seg" data-filter="status"><button type="button" data-v="all" aria-pressed="true">全部</button><button type="button" data-v="todo" aria-pressed="false">未完成</button><button type="button" data-v="done" aria-pressed="false">已完成</button></span>
+    <span class="seg" data-filter="lv"><button type="button" data-v="all" aria-pressed="true">所有難度</button><button type="button" data-v="1-2" aria-pressed="false">入門</button><button type="button" data-v="3" aria-pressed="false">中階</button><button type="button" data-v="4-5" aria-pressed="false">進階</button></span>
+    <span class="fcount" data-fcount aria-live="polite"></span>
+  </div>
+</div>
 
 <section class="unit" id="M6.1" data-unit="M6.1">
   <header class="unit-h"><span class="uid">M6.1</span><h2>材質、貼圖與 Texture Paint</h2><span class="ucount" data-ucount>3 部影片</span></header>
   <p class="muted">建立材質節點、木頭、旗幟與繪畫紋理。</p>
-  <ul class="vgrid"><li><a class="vcard" href="../v/cuOmk6iW160.html" data-vid="cuOmk6iW160"><span class="thumb"><img src="https://i.ytimg.com/vi/cuOmk6iW160/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="dur">2:44</span><span class="st" data-status></span></span><span class="vbody"><span class="vtitle">Blender 教學：快速製作真實木頭材質，輕鬆上手！</span><span class="vmeta"><span class="lv" aria-label="難度 3/5"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span></span></span></a></li><li><a class="vcard" href="../v/qGIQjyH4yx0.html" data-vid="qGIQjyH4yx0"><span class="thumb"><img src="https://i.ytimg.com/vi/qGIQjyH4yx0/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="dur">3:53</span><span class="st" data-status></span></span><span class="vbody"><span class="vtitle">使用Blender免費3D建模軟體創建馬賽克磁磚拼貼效果 - 著色器教學</span><span class="vmeta"><span class="lv" aria-label="難度 3/5"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span></span></span></a></li><li><a class="vcard" href="../v/ycdk-KNwBI8.html" data-vid="ycdk-KNwBI8"><span class="thumb"><img src="https://i.ytimg.com/vi/ycdk-KNwBI8/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="dur">2:37</span><span class="st" data-status></span></span><span class="vbody"><span class="vtitle">【Blender教學】3分鐘學會金屬車花、滾紋、輥紋、Knurling！3D列印防滑紋理快速建模技巧</span><span class="vmeta"><span class="lv" aria-label="難度 3/5"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span></span></span></a></li></ul>
+  <ul class="vgrid"><li data-lv="3"><a class="vcard" href="../v/cuOmk6iW160.html" data-vid="cuOmk6iW160"><span class="thumb"><img src="https://i.ytimg.com/vi/cuOmk6iW160/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="dur">2:44</span><span class="st" data-status></span><span class="hover-play" aria-hidden="true"></span></span><span class="vbody"><span class="vtitle">Blender 教學：快速製作真實木頭材質，輕鬆上手！</span><span class="vmeta"><span class="lv" aria-label="難度 3/5"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span></span></span></a></li><li data-lv="3"><a class="vcard" href="../v/qGIQjyH4yx0.html" data-vid="qGIQjyH4yx0"><span class="thumb"><img src="https://i.ytimg.com/vi/qGIQjyH4yx0/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="dur">3:53</span><span class="st" data-status></span><span class="hover-play" aria-hidden="true"></span></span><span class="vbody"><span class="vtitle">使用Blender免費3D建模軟體創建馬賽克磁磚拼貼效果 - 著色器教學</span><span class="vmeta"><span class="lv" aria-label="難度 3/5"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span></span></span></a></li><li data-lv="3"><a class="vcard" href="../v/ycdk-KNwBI8.html" data-vid="ycdk-KNwBI8"><span class="thumb"><img src="https://i.ytimg.com/vi/ycdk-KNwBI8/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="dur">2:37</span><span class="st" data-status></span><span class="hover-play" aria-hidden="true"></span></span><span class="vbody"><span class="vtitle">【Blender教學】3分鐘學會金屬車花、滾紋、輥紋、Knurling！3D列印防滑紋理快速建模技巧</span><span class="vmeta"><span class="lv" aria-label="難度 3/5"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span></span></span></a></li></ul>
   <div class="check">
     <label class="crit"><input type="checkbox" data-crit> <span><b>過關標準：</b>能讓材質差異清楚可讀，並保留主要節點設定。</span></label>
     <label class="work"><span>我的作品紀錄（檔名、做了什麼、遇到什麼問題）</span>
@@ -59,7 +69,7 @@
 <section class="unit" id="M6.2" data-unit="M6.2">
   <header class="unit-h"><span class="uid">M6.2</span><h2>燈光與算繪</h2><span class="ucount" data-ucount>3 部影片</span></header>
   <p class="muted">比較 Eevee／Cycles，輸出可閱讀的渲染結果。</p>
-  <ul class="vgrid"><li><a class="vcard" href="../v/VLncThOZiCQ.html" data-vid="VLncThOZiCQ"><span class="thumb"><img src="https://i.ytimg.com/vi/VLncThOZiCQ/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="dur">8:36</span><span class="st" data-status></span></span><span class="vbody"><span class="vtitle">Blender 新手渲染教學：零基礎一步步算繪出你的第一張 3D 動畫與圖像</span><span class="vmeta"><span class="lv" aria-label="難度 3/5"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span></span></span></a></li><li><a class="vcard" href="../v/DSUoGlDJu0g.html" data-vid="DSUoGlDJu0g"><span class="thumb"><img src="https://i.ytimg.com/vi/DSUoGlDJu0g/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="dur">7:31</span><span class="st" data-status></span></span><span class="vbody"><span class="vtitle">Blender教學：算繪出去背/縷空背景/透明背景/沒有背景的 png 圖片</span><span class="vmeta"><span class="lv" aria-label="難度 3/5"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span></span></span></a></li><li><a class="vcard" href="../v/hlKZXPrLd2c.html" data-vid="hlKZXPrLd2c"><span class="thumb"><img src="https://i.ytimg.com/vi/hlKZXPrLd2c/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="dur">20:46</span><span class="st" data-status></span></span><span class="vbody"><span class="vtitle">blender動畫教學：玻璃杯建模與算繪 (已加字幕)</span><span class="vmeta"><span class="lv" aria-label="難度 3/5"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span></span></span></a></li></ul>
+  <ul class="vgrid"><li data-lv="3"><a class="vcard" href="../v/VLncThOZiCQ.html" data-vid="VLncThOZiCQ"><span class="thumb"><img src="https://i.ytimg.com/vi/VLncThOZiCQ/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="dur">8:36</span><span class="st" data-status></span><span class="hover-play" aria-hidden="true"></span></span><span class="vbody"><span class="vtitle">Blender 新手渲染教學：零基礎一步步算繪出你的第一張 3D 動畫與圖像</span><span class="vmeta"><span class="lv" aria-label="難度 3/5"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span></span></span></a></li><li data-lv="3"><a class="vcard" href="../v/DSUoGlDJu0g.html" data-vid="DSUoGlDJu0g"><span class="thumb"><img src="https://i.ytimg.com/vi/DSUoGlDJu0g/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="dur">7:31</span><span class="st" data-status></span><span class="hover-play" aria-hidden="true"></span></span><span class="vbody"><span class="vtitle">Blender教學：算繪出去背/縷空背景/透明背景/沒有背景的 png 圖片</span><span class="vmeta"><span class="lv" aria-label="難度 3/5"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span></span></span></a></li><li data-lv="3"><a class="vcard" href="../v/hlKZXPrLd2c.html" data-vid="hlKZXPrLd2c"><span class="thumb"><img src="https://i.ytimg.com/vi/hlKZXPrLd2c/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="dur">20:46</span><span class="st" data-status></span><span class="hover-play" aria-hidden="true"></span></span><span class="vbody"><span class="vtitle">blender動畫教學：玻璃杯建模與算繪 (已加字幕)</span><span class="vmeta"><span class="lv" aria-label="難度 3/5"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span></span></span></a></li></ul>
   <div class="check">
     <label class="crit"><input type="checkbox" data-crit> <span><b>過關標準：</b>能說明算繪速度與品質的取捨。</span></label>
     <label class="work"><span>我的作品紀錄（檔名、做了什麼、遇到什麼問題）</span>
@@ -69,7 +79,7 @@
 <section class="unit" id="M6.3" data-unit="M6.3">
   <header class="unit-h"><span class="uid">M6.3</span><h2>布料、波紋與物理模擬</h2><span class="ucount" data-ucount>2 部影片</span></header>
   <p class="muted">用模擬與細分產生可控的動態效果。</p>
-  <ul class="vgrid"><li><a class="vcard" href="../v/xv7HXCLc4RY.html" data-vid="xv7HXCLc4RY"><span class="thumb"><img src="https://i.ytimg.com/vi/xv7HXCLc4RY/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="dur">6:35</span><span class="st" data-status></span></span><span class="vbody"><span class="vtitle">Blender Shading 旗幟紋理與風效果｜Blender Cloth Simulation 教學</span><span class="vmeta"><span class="lv" aria-label="難度 3/5"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span></span></span></a></li><li><a class="vcard" href="../v/RffngLLEO04.html" data-vid="RffngLLEO04"><span class="thumb"><img src="https://i.ytimg.com/vi/RffngLLEO04/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="dur">3:54</span><span class="st" data-status></span></span><span class="vbody"><span class="vtitle">如何在 Blender 建立水波紋？物理模擬與動態繪製教學</span><span class="vmeta"><span class="lv" aria-label="難度 3/5"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span></span></span></a></li></ul>
+  <ul class="vgrid"><li data-lv="3"><a class="vcard" href="../v/xv7HXCLc4RY.html" data-vid="xv7HXCLc4RY"><span class="thumb"><img src="https://i.ytimg.com/vi/xv7HXCLc4RY/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="dur">6:35</span><span class="st" data-status></span><span class="hover-play" aria-hidden="true"></span></span><span class="vbody"><span class="vtitle">Blender Shading 旗幟紋理與風效果｜Blender Cloth Simulation 教學</span><span class="vmeta"><span class="lv" aria-label="難度 3/5"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span></span></span></a></li><li data-lv="3"><a class="vcard" href="../v/RffngLLEO04.html" data-vid="RffngLLEO04"><span class="thumb"><img src="https://i.ytimg.com/vi/RffngLLEO04/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="dur">3:54</span><span class="st" data-status></span><span class="hover-play" aria-hidden="true"></span></span><span class="vbody"><span class="vtitle">如何在 Blender 建立水波紋？物理模擬與動態繪製教學</span><span class="vmeta"><span class="lv" aria-label="難度 3/5"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span></span></span></a></li></ul>
   <div class="check">
     <label class="crit"><input type="checkbox" data-crit> <span><b>過關標準：</b>能調整模擬參數並解釋結果差異。</span></label>
     <label class="work"><span>我的作品紀錄（檔名、做了什麼、遇到什麼問題）</span>
@@ -79,7 +89,7 @@
 <section class="unit" id="M6.4" data-unit="M6.4">
   <header class="unit-h"><span class="uid">M6.4</span><h2>毛髮、動態捕捉與動畫</h2><span class="ucount" data-ucount>2 部影片</span></header>
   <p class="muted">延伸到毛髮、Mocap、骨架與簡單動畫。</p>
-  <ul class="vgrid"><li><a class="vcard" href="../v/HgCrdmTQ9wQ.html" data-vid="HgCrdmTQ9wQ"><span class="thumb"><img src="https://i.ytimg.com/vi/HgCrdmTQ9wQ/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="dur">3:52</span><span class="st" data-status></span></span><span class="vbody"><span class="vtitle">Blender 教學｜快速上手布料動畫模擬與細分技巧</span><span class="vmeta"><span class="lv" aria-label="難度 3/5"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span></span></span></a></li><li><a class="vcard" href="../v/ArSgID4QT50.html" data-vid="ArSgID4QT50"><span class="thumb"><img src="https://i.ytimg.com/vi/ArSgID4QT50/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="dur">2:23</span><span class="st" data-status></span></span><span class="vbody"><span class="vtitle">【Blender教學】只要2分鐘！超強 Quick Hair 快速毛髮系統極速上手 (猴頭實戰)</span><span class="vmeta"><span class="lv" aria-label="難度 3/5"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span></span></span></a></li></ul>
+  <ul class="vgrid"><li data-lv="3"><a class="vcard" href="../v/HgCrdmTQ9wQ.html" data-vid="HgCrdmTQ9wQ"><span class="thumb"><img src="https://i.ytimg.com/vi/HgCrdmTQ9wQ/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="dur">3:52</span><span class="st" data-status></span><span class="hover-play" aria-hidden="true"></span></span><span class="vbody"><span class="vtitle">Blender 教學｜快速上手布料動畫模擬與細分技巧</span><span class="vmeta"><span class="lv" aria-label="難度 3/5"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span></span></span></a></li><li data-lv="3"><a class="vcard" href="../v/ArSgID4QT50.html" data-vid="ArSgID4QT50"><span class="thumb"><img src="https://i.ytimg.com/vi/ArSgID4QT50/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="dur">2:23</span><span class="st" data-status></span><span class="hover-play" aria-hidden="true"></span></span><span class="vbody"><span class="vtitle">【Blender教學】只要2分鐘！超強 Quick Hair 快速毛髮系統極速上手 (猴頭實戰)</span><span class="vmeta"><span class="lv" aria-label="難度 3/5"><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i></span></span></span></a></li></ul>
   <div class="check">
     <label class="crit"><input type="checkbox" data-crit> <span><b>過關標準：</b>能輸出一段短動畫或說明動態系統的限制。</span></label>
     <label class="work"><span>我的作品紀錄（檔名、做了什麼、遇到什麼問題）</span>
@@ -92,8 +102,18 @@
   <p>影片皆來自 YouTube 頻道 <a href="https://www.youtube.com/@polikjames" rel="noopener" target="_blank">小黃老師 @polikjames</a>。學習紀錄只存在你自己的瀏覽器，不會上傳。</p>
   <p><a href="../me.html">匯出／備份學習紀錄</a> · <a href="https://polik18.github.io/education.html">Polik 教學現場</a></p>
 </footer>
-<script src="../assets/progress.js?v=20261123"></script>
-<script src="../assets/app.js?v=20261123" data-page="module"></script>
+<dialog class="search" data-search aria-label="搜尋影片">
+  <div class="search-box">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input type="search" data-search-input placeholder="輸入關鍵字，例如：Cura、倒角、指尖陀螺、STL" autocomplete="off" aria-label="搜尋關鍵字">
+    <kbd>Esc</kbd>
+  </div>
+  <ul class="search-res" data-search-res role="listbox" aria-label="搜尋結果"></ul>
+  <p class="search-hint">↑↓ 選擇 · Enter 開啟 · 共 166 部影片</p>
+</dialog>
+<div class="toasts" data-toasts aria-live="polite"></div>
+<script src="../assets/progress.js?v=20261123b"></script>
+<script src="../assets/app.js?v=20261123b" data-page="module"></script>
 <script src="https://polik18.github.io/assets/site-stats.js" defer></script>
 <script src="https://polik18.github.io/assets/polik-shell.js" data-cat="education" data-accent="#ff7a45" data-accent2="#2dd4bf" defer></script>
 </body>

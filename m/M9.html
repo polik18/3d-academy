@@ -15,16 +15,19 @@
 <link rel="icon" href="https://polik18.github.io/assets/brand/favicon.svg?v=20261123" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap">
-<link rel="stylesheet" href="../assets/style.css?v=20261123">
+<link rel="stylesheet" href="../assets/style.css?v=20261123b">
+<script>try{var t=localStorage.getItem("pk3d.theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}document.documentElement.classList.add("js")</script>
 
 </head>
 <body>
 <a class="skip" href="#main">跳到主要內容</a>
 <header class="top">
-  <a class="brand" href="../"><span class="brand-mark" aria-hidden="true">3D</span><span>小黃老師 3D 自學館</span></a>
+  <a class="brand" href="../"><span class="brand-mark" aria-hidden="true">3D</span><span class="brand-t">小黃老師 3D 自學館</span></a>
   <nav class="top-nav" aria-label="主選單">
-    <a href="../#map">課程地圖</a>
-    <a href="../me.html">我的學習紀錄 <span class="pill" data-overall>0%</span></a>
+    <button type="button" class="search-btn" data-search-open aria-label="搜尋影片"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>搜尋影片</span><kbd>/</kbd></button>
+    <a href="../#map" class="nav-map">課程地圖</a>
+    <a href="../me.html" class="nav-me"><span class="nav-me-t">我的紀錄</span> <span class="pill" data-overall>0%</span></a>
+    <button type="button" class="icon-btn" data-theme-toggle aria-label="切換深淺色"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 0 0 16z" class="fill"/></svg></button>
   </nav>
 </header>
 <main id="main">
@@ -44,7 +47,14 @@
   </aside>
 </section>
 <figure class="diagram-wrap"><svg class="diagram" viewBox="-2 0 890 112" role="img" aria-label="3D 列印工作流程：建模、匯出、切片、列印、展示"><g transform="translate(0,0)"><rect class="s-box" x="0" y="10" width="150" height="92" rx="14"/><text class="s-tag" x="14" y="34">M1–M3</text><text class="s-h" x="14" y="66">建模</text><text class="s-sub" x="14" y="88">Blender／Tinkercad</text></g><path class="s-arrow" d="M154 56 h24 m-7 -6 l7 6 l-7 6"/><g transform="translate(184,0)"><rect class="s-box" x="0" y="10" width="150" height="92" rx="14"/><text class="s-tag" x="14" y="34">M5.1</text><text class="s-h" x="14" y="66">匯出</text><text class="s-sub" x="14" y="88">STL・3MF</text></g><path class="s-arrow" d="M338 56 h24 m-7 -6 l7 6 l-7 6"/><g transform="translate(368,0)"><rect class="s-box" x="0" y="10" width="150" height="92" rx="14"/><text class="s-tag" x="14" y="34">M5.2</text><text class="s-h" x="14" y="66">切片</text><text class="s-sub" x="14" y="88">Cura・Bambu</text></g><path class="s-arrow" d="M522 56 h24 m-7 -6 l7 6 l-7 6"/><g transform="translate(552,0)"><rect class="s-box" x="0" y="10" width="150" height="92" rx="14"/><text class="s-tag" x="14" y="34">M5.4</text><text class="s-h" x="14" y="66">列印</text><text class="s-sub" x="14" y="88">FDM・光固化</text></g><path class="s-arrow" d="M706 56 h24 m-7 -6 l7 6 l-7 6"/><g transform="translate(736,0)"><rect class="s-box" x="0" y="10" width="150" height="92" rx="14"/><text class="s-tag" x="14" y="34">M7</text><text class="s-h" x="14" y="66">展示</text><text class="s-sub" x="14" y="88">Sketchfab・Spatial</text></g></svg><figcaption>整合專題：從需求走到成品</figcaption></figure>
-<nav class="toc" aria-label="小單元"><a href="#M9.1">M9.1 需求、草圖與工具選擇</a><a href="#M9.2">M9.2 製造／展示測試與問題排除</a><a href="#M9.3">M9.3 成果發表與學習反思</a></nav>
+<div class="toolbar" data-filters>
+  <nav class="toc" aria-label="小單元"><a href="#M9.1">M9.1 需求、草圖與工具選擇</a><a href="#M9.2">M9.2 製造／展示測試與問題排除</a><a href="#M9.3">M9.3 成果發表與學習反思</a></nav>
+  <div class="filters" role="group" aria-label="篩選影片">
+    <span class="seg" data-filter="status"><button type="button" data-v="all" aria-pressed="true">全部</button><button type="button" data-v="todo" aria-pressed="false">未完成</button><button type="button" data-v="done" aria-pressed="false">已完成</button></span>
+    <span class="seg" data-filter="lv"><button type="button" data-v="all" aria-pressed="true">所有難度</button><button type="button" data-v="1-2" aria-pressed="false">入門</button><button type="button" data-v="3" aria-pressed="false">中階</button><button type="button" data-v="4-5" aria-pressed="false">進階</button></span>
+    <span class="fcount" data-fcount aria-live="polite"></span>
+  </div>
+</div>
 
 <section class="unit" id="M9.1" data-unit="M9.1">
   <header class="unit-h"><span class="uid">M9.1</span><h2>需求、草圖與工具選擇</h2><span class="ucount" data-ucount>0 部影片</span></header>
@@ -59,7 +69,7 @@
 <section class="unit" id="M9.2" data-unit="M9.2">
   <header class="unit-h"><span class="uid">M9.2</span><h2>製造／展示測試與問題排除</h2><span class="ucount" data-ucount>2 部影片</span></header>
   <p class="muted">驗證模型、切片、實體列印或線上展場的結果。</p>
-  <ul class="vgrid"><li><a class="vcard" href="../v/CqpIGT0wHOU.html" data-vid="CqpIGT0wHOU"><span class="thumb"><img src="https://i.ytimg.com/vi/CqpIGT0wHOU/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="dur">5:46</span><span class="st" data-status></span></span><span class="vbody"><span class="vtitle">Bambu Lab AMS 自動換料系統開箱與完整安裝教學｜拓竹 3D 印表機升級必看</span><span class="vmeta"><span class="lv" aria-label="難度 4/5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span></span></span></a></li><li><a class="vcard" href="../v/2pOPXEDaPrQ.html" data-vid="2pOPXEDaPrQ"><span class="thumb"><img src="https://i.ytimg.com/vi/2pOPXEDaPrQ/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="dur">2:50</span><span class="st" data-status></span></span><span class="vbody"><span class="vtitle">【Bambu Lab AMS 開箱】實現 3D 打印多色自由！自動供料系統零件完整解析</span><span class="vmeta"><span class="lv" aria-label="難度 4/5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span></span></span></a></li></ul>
+  <ul class="vgrid"><li data-lv="4"><a class="vcard" href="../v/CqpIGT0wHOU.html" data-vid="CqpIGT0wHOU"><span class="thumb"><img src="https://i.ytimg.com/vi/CqpIGT0wHOU/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="dur">5:46</span><span class="st" data-status></span><span class="hover-play" aria-hidden="true"></span></span><span class="vbody"><span class="vtitle">Bambu Lab AMS 自動換料系統開箱與完整安裝教學｜拓竹 3D 印表機升級必看</span><span class="vmeta"><span class="lv" aria-label="難度 4/5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span></span></span></a></li><li data-lv="4"><a class="vcard" href="../v/2pOPXEDaPrQ.html" data-vid="2pOPXEDaPrQ"><span class="thumb"><img src="https://i.ytimg.com/vi/2pOPXEDaPrQ/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="dur">2:50</span><span class="st" data-status></span><span class="hover-play" aria-hidden="true"></span></span><span class="vbody"><span class="vtitle">【Bambu Lab AMS 開箱】實現 3D 打印多色自由！自動供料系統零件完整解析</span><span class="vmeta"><span class="lv" aria-label="難度 4/5"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class=""></i></span></span></span></a></li></ul>
   <div class="check">
     <label class="crit"><input type="checkbox" data-crit> <span><b>過關標準：</b>能以證據說明問題與下一版修正。</span></label>
     <label class="work"><span>我的作品紀錄（檔名、做了什麼、遇到什麼問題）</span>
@@ -82,8 +92,18 @@
   <p>影片皆來自 YouTube 頻道 <a href="https://www.youtube.com/@polikjames" rel="noopener" target="_blank">小黃老師 @polikjames</a>。學習紀錄只存在你自己的瀏覽器，不會上傳。</p>
   <p><a href="../me.html">匯出／備份學習紀錄</a> · <a href="https://polik18.github.io/education.html">Polik 教學現場</a></p>
 </footer>
-<script src="../assets/progress.js?v=20261123"></script>
-<script src="../assets/app.js?v=20261123" data-page="module"></script>
+<dialog class="search" data-search aria-label="搜尋影片">
+  <div class="search-box">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input type="search" data-search-input placeholder="輸入關鍵字，例如：Cura、倒角、指尖陀螺、STL" autocomplete="off" aria-label="搜尋關鍵字">
+    <kbd>Esc</kbd>
+  </div>
+  <ul class="search-res" data-search-res role="listbox" aria-label="搜尋結果"></ul>
+  <p class="search-hint">↑↓ 選擇 · Enter 開啟 · 共 166 部影片</p>
+</dialog>
+<div class="toasts" data-toasts aria-live="polite"></div>
+<script src="../assets/progress.js?v=20261123b"></script>
+<script src="../assets/app.js?v=20261123b" data-page="module"></script>
 <script src="https://polik18.github.io/assets/site-stats.js" defer></script>
 <script src="https://polik18.github.io/assets/polik-shell.js" data-cat="education" data-accent="#ff7a45" data-accent2="#2dd4bf" defer></script>
 </body>
